@@ -19,14 +19,14 @@ from langfuse.openai import OpenAI
 
 def configure_page() -> None:
     st.set_page_config(
-        page_title="Invoice Vision Dashboard",
+        page_title="Assistant comptable IA",
         page_icon="📊",
         layout="wide",
     )
 
 
 def render_header() -> None:
-    st.title("📊 Invoice Vision Dashboard")
+    st.title("Assistant comptable IA")
     st.markdown(
         """
 Agent qui prend des **factures en PDF ou images**, en extrait les infos
@@ -390,13 +390,6 @@ def render_dashboard(df: pd.DataFrame) -> None:
     st.subheader("🥧 Répartition du reste à payer")
     st.plotly_chart(
         px.pie(vendor_remain_df, names="vendor_name", values="remaining_amount"),
-        use_container_width=True,
-    )
-
-    st.subheader("📆 Dépenses par mois")
-    month_df = edited_df.groupby("invoice_month", as_index=False)["total_amount"].sum()
-    st.plotly_chart(
-        px.bar(month_df, x="invoice_month", y="total_amount"),
         use_container_width=True,
     )
 
